@@ -24,13 +24,17 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log('Form has been submitted!');
-    this.authService.authService({
-      username: 'chris',
-      password: 'secret'
-    }).subscribe(
-      data => console.log(data)
-    )
+    let fv = this.form.value;
+    // console.log(fv.password.length !== 0 && fv.username.length !== 0);
+
+    if (fv.password.length !== 0 && fv.username.length !== 0) {
+      this.authService.authService({
+        username: fv.username,
+        password: fv.password
+      }).subscribe(
+        data => console.log(data)
+      )
+    }
   }
 
 }
